@@ -1,0 +1,16 @@
+.CoffeeDisplay {
+  font-size: var(--fs-h3);
+}
+.display-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  place-items: center;
+  margin-top: 2em;
+  gap: 3em;
+}
+@media screen and (min-width: 45em) {
+  .display-container {
+    grid-template-columns: 1fr 1fr;
+    place-items: initial;
+  }
+}

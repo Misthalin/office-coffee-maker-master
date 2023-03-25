@@ -1,0 +1,43 @@
+.CoffeeRecipe {
+  margin-top: 1.5em;
+}
+
+.recipe-list {
+  margin: 0;
+  margin-top: 1em;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.recipe--item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.recipe--item span + span {
+  margin-bottom: 0.5em;
+}
+.rating {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1em;
+}
+.rating > *:last-child {
+  margin-top: 1em;
+}
+
+@media screen and (min-width: 45em) {
+  .recipe-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .rating {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .rating > *:last-child {
+    margin-top: 0;
+  }
+}

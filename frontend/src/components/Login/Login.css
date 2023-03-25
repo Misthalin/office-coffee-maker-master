@@ -1,0 +1,17 @@
+.form-link {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+.form-link::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 0.15em;
+  bottom: -0.2em;
+  left: 0;
+  background-color: var(--foreground);
+}
+.login-container {
+  margin-top: 2em;
+}

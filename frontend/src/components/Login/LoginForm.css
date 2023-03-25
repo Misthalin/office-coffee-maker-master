@@ -1,0 +1,27 @@
+.login-form {
+  margin-top: 2em;
+}
+
+.form-input {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-input input {
+  background-color: var(--background);
+  color: var(--foreground);
+  width: 100%;
+  font-size: var(--fs-body);
+  padding: 0.5em 1em;
+  border-radius: 0.75em;
+  border: var(--border);
+}
+
+.form-input + .form-input {
+  margin-top: 1em;
+  margin-top: 0.5em;
+}
+.error {
+  font-size: var(--fs-body);
+}

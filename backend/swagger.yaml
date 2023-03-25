@@ -1,0 +1,1522 @@
+openapi: 3.0.0
+info:
+  title: CoffeeMaker
+  description: Node.js, mongoDB CoffeeMaker with login/registration system
+  version: 1.0.0
+servers:
+  - url: http://localhost:5050
+    description: Local development server
+tags:
+  - name: Auth
+    description: Everything about authentication
+  - name: Beans
+    description: Operations about beans
+  - name: Brews
+    description: Operations about brews
+  - name: Manage
+    description: Operations for admin
+  - name: Votes
+    description: Operations for votes
+
+paths:
+  /api/beans:
+    get:
+      tags:
+      - Beans
+      summary: List of beans
+      description: User & Admin
+      operationId: getBeans
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    [
+                        {
+                            "_id": "622d1841be2965a403e4d8e3",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Example",
+                            "brand": "NAPA VALLEY COFFEE ROASTING COMPANY",
+                            "roastProfile": "Medium",
+                            "roastType": "Blend",
+                            "priceKg": 170,
+                            "origin": "Arabica",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d1871be2965a403e4d8e5",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Indonesian Celebes Kalosi Vienna",
+                            "brand": "MITALENA ARTISAN COFFEE",
+                            "roastProfile": "Medium",
+                            "roastType": "Single Origin",
+                            "priceKg": 220,
+                            "origin": "Arabica",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d18aabe2965a403e4d8e7",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Peru FTO Decaf Dark",
+                            "brand": "CAFE SANTANA",
+                            "roastProfile": "Dark",
+                            "roastType": "Single Origin",
+                            "priceKg": 220,
+                            "origin": "Organical",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d18e2be2965a403e4d8e9",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Costa Rica Cordillera De Fuego Termico",
+                            "brand": "THE CHOSEN BEAN",
+                            "roastProfile": "Medium",
+                            "roastType": "Single Origin",
+                            "priceKg": 159,
+                            "origin": "Arabica",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d1917be2965a403e4d8eb",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Freight House",
+                            "brand": "UTICA COFFEE ROASTING CO.",
+                            "roastProfile": "Medium",
+                            "roastType": "Blend",
+                            "priceKg": 179,
+                            "origin": "Arabica",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d1957be2965a403e4d8ed",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Colombian Peaks",
+                            "brand": "EIGHT O'CLOCK COFFEE COMPANY",
+                            "roastProfile": "Medium",
+                            "roastType": "Blend",
+                            "priceKg": 219,
+                            "origin": "Arabica",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d1990be2965a403e4d8ef",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Dark Italian Roast",
+                            "brand": "CRAVENS COFFEE COMPANY",
+                            "roastProfile": "Dark",
+                            "roastType": "Blend",
+                            "priceKg": 143,
+                            "origin": "Arabica",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d1a5bbe2965a403e4d8f3",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "The 1950",
+                            "brand": "IGNORE",
+                            "roastProfile": "Medium",
+                            "roastType": "Single Origin",
+                            "processingMethod": "Washed",
+                            "priceKg": 412,
+                            "origin": "Arabica",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d1a73be2965a403e4d8f6",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Buna Boka",
+                            "brand": "JBC COFFEE ROASTERS",
+                            "roastProfile": "Medium",
+                            "roastType": "Single Origin",
+                            "processingMethod": "Washed",
+                            "priceKg": 302,
+                            "origin": "Arabica",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "622d2d8f1abd937c0c0cf9aa",
+                            "beanAdded": "2022-05-20T19:25:22.018+00:00",
+                            "typeOfBean": "Example",
+                            "brand": "Example Company",
+                            "roastProfile": "Dark",
+                            "roastType": "Blend",
+                            "priceKg": 192,
+                            "origin": "Arabica",
+                            "__v": 0
+                        }
+                    ]
+        "400":
+          description: Bean not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+    post:
+      tags:
+      - Beans
+      summary: Add new bean
+      description: Admin
+      operationId: postBean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                typeOfBean:
+                  type: string
+                  example: Evergood Classic
+                brand:
+                  type: string
+                  example: Evergood
+                roastProfile:
+                  type: string
+                  example: Medium
+                roastType:
+                  type: string
+                  example: Blend
+                priceKg:
+                  type: number
+                  example: 149
+                origin:
+                  type: string
+                  example: Arabica
+              required:
+                - typeOfBean
+                - brand
+                - roastProfile
+                - roastType
+                - priceKg
+                - origin
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "typeOfBean": "Evergood Classic",
+                        "brand": "Evergood",
+                        "roastProfile": "Medium",
+                        "roastType": "Blend",
+                        "priceKg": 149,
+                        "origin": "Arabica",
+                        "_id": "6288b238abd159f9448a1206",
+                        "beanAdded": "2022-05-21T09:34:48.863Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Please add all fields
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "500":
+          description: Internal server error
+  /api/beans/:id:
+    get:
+      tags:
+      - Beans
+      summary: Get specific bean
+      description: Admin
+      operationId: getBean
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "_id": "6288a4404571ebe68b8ac304",
+                        "typeOfBean": "Evergood Classic",
+                        "brand": "Evergood",
+                        "roastProfile": "Medium",
+                        "roastType": "Blend",
+                        "priceKg": 149,
+                        "origin": "Arabica",
+                        "beanAdded": "2022-05-21T08:35:12.168Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Bean not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+    delete:
+      tags: 
+      - Beans
+      summary: Delete specific bean
+      description: Admin
+      operationId: deleteBean
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "id": "6288a4404571ebe68b8ac304"
+                    }
+        "400":
+          description: Bean not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+    put:
+      tags:
+      - Beans
+      summary: Update specific bean
+      description: Admin
+      operationId: updateBean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                typeOfBean:
+                  type: string
+                  example: Evergood Classic
+                brand:
+                  type: string
+                  example: Evergood
+                roastProfile:
+                  type: string
+                  example: Medium
+                roastType:
+                  type: string
+                  example: Blend
+                priceKg:
+                  type: number
+                  example: 149
+                origin:
+                  type: string
+                  example: Arabica
+              required:
+                - typeOfBean
+                - brand
+                - roastProfile
+                - roastType
+                - priceKg
+                - origin
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "typeOfBean": "Evergood Classic",
+                        "brand": "Evergood",
+                        "roastProfile": "Medium",
+                        "roastType": "Blend",
+                        "priceKg": 149,
+                        "origin": "Arabica",
+                        "_id": "6288b238abd159f9448a1206",
+                        "beanAdded": "2022-05-21T09:34:48.863Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Bean not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+  /api/brews:
+    get:
+      tags: 
+      - Brews
+      summary: List of brews
+      description: User & Admin
+      operationId: getBrews
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "brewName": "My new brew",
+                        "typeOfBean": "Evergood",
+                        "gramsOfCoffee": 72,
+                        "grindingSettings": 3,
+                        "litersWater": 1.1,
+                        "rating": 1,
+                        "_id": "6288b3fddde43e0c28357b2d",
+                        "brewedAt": "2022-05-21T09:42:21.873Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Brew not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+    post:
+      tags: 
+      - Brews
+      summary: Add new brew
+      description: User & Admin
+      operationId: postBrew
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brewName:
+                  type: string
+                  example: My new brew
+                typeOfBean:
+                  type: string
+                  example: Evergood
+                gramsOfCoffee:
+                  type: number
+                  example: 72
+                grindingSettings:
+                  type: number
+                  example: 3
+                litersWater:
+                  type: number
+                  example: 1.1
+              required:
+                - brewName
+                - typeOfBean
+                - gramsOfCoffee
+                - grindingSettings
+                - litersWater
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "brewName": "My new brew",
+                        "typeOfBean": "Evergood",
+                        "gramsOfCoffee": 72,
+                        "grindingSettings": 3,
+                        "litersWater": 1.1,
+                        "rating": 1,
+                        "_id": "6288b3fddde43e0c28357b2d",
+                        "brewedAt": "2022-05-21T09:42:21.873Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Please add all fields
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "500":
+          description: Internal server error
+  /api/brews/:id:
+    get:
+      tags: 
+      - Brews
+      summary: Get specific brew
+      description: User & Admin
+      operationId: getBrew
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "_id": "6288b3fddde43e0c28357b2d",
+                        "brewName": "My new brew",
+                        "typeOfBean": "Evergood",
+                        "gramsOfCoffee": 72,
+                        "grindingSettings": 3,
+                        "litersWater": 1.1,
+                        "rating": 3.6666666666666665,
+                        "brewedAt": "2022-05-21T09:42:21.873Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Brew not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+    delete:
+      tags: 
+      - Brews
+      summary: Delete specific brew
+      description: Admin
+      operationId: deleteBrew
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "id": "6288b3fddde43e0c28357b2d"
+                    }
+        "400":
+          description: Brew not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+    put:
+      tags: 
+      - Brews
+      summary: Update specific brew
+      description: User & Admin
+      operationId: updateBrew
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brewName:
+                  type: string
+                  example: My new brew
+                typeOfBean:
+                  type: string
+                  example: Evergood
+                gramsOfCoffee:
+                  type: number
+                  example: 72
+                grindingSettings:
+                  type: number
+                  example: 3
+                litersWater:
+                  type: number
+                  example: 1.1
+              required:
+                - brewName
+                - typeOfBean
+                - gramsOfCoffee
+                - grindingSettings
+                - litersWater
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "brewName": "My new brew",
+                        "typeOfBean": "Evergood",
+                        "gramsOfCoffee": 72,
+                        "grindingSettings": 3,
+                        "litersWater": 1.1,
+                        "rating": 4.5,
+                        "_id": "6288b3fddde43e0c28357b2d",
+                        "brewedAt": "2022-05-21T09:42:21.873Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Brew not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+  /api/brews/newest-brew:
+    get:
+      tags: 
+      - Brews
+      summary: Get newest brew
+      description: Public
+      operationId: getNewestBrew
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    [
+                        {
+                            "_id": "6288b3fddde43e0c28357b2d",
+                            "brewName": "My new brew",
+                            "typeOfBean": "Evergood",
+                            "gramsOfCoffee": 72,
+                            "grindingSettings": 3,
+                            "litersWater": 1.1,
+                            "rating": 1,
+                            "brewedAt": "2022-05-21T09:42:21.873Z",
+                            "__v": 0
+                        }
+                    ]
+        "400":
+          description: Brew not found
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+  /api/votes:
+    get:
+      tags: 
+      - Votes
+      summary: List all votes
+      description: User & Admin
+      operationId: getVotes
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    [
+                        {
+                            "_id": "6288e0a6b3076a49e337fe3b",
+                            "brewId": "6288b3fddde43e0c28357b2d",
+                            "username": "myusername",
+                            "value": 3,
+                            "date": "2022-05-21T12:52:54.134Z",
+                            "__v": 0
+                        }
+                    ]
+        "400":
+          description: Not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+    post:
+      tags: 
+      - Votes
+      summary: Vote for brew
+      description: User & Admin
+      operationId: postVote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brewId:
+                  type: string
+                  example: 6288b3fddde43e0c28357b2d
+                username:
+                  type: string
+                  example: myusername
+                value:
+                  type: number
+                  example: 3
+              required:
+                - brewId
+                - username
+                - value
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    {
+                        "brewId": "6288b3fddde43e0c28357b2d",
+                        "username": "myusername",
+                        "value": 3,
+                        "_id": "6288e0a6b3076a49e337fe3b",
+                        "date": "2022-05-21T12:52:54.134Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Please add all fields
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "409":
+          description: User has already voted for this brew
+        "500":
+          description: Internal server error
+    put:
+      tags: 
+      - Votes
+      summary: Update specific vote
+      description: User & Admin
+      operationId: updateVote
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brewId:
+                  type: string
+                  example: 6288b3fddde43e0c28357b2d
+                username:
+                  type: string
+                  example: myusername
+                value:
+                  type: number
+                  example: 5
+              required:
+                - brewId
+                - username
+                - value
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                example:
+                  value: |-
+                    {
+                        "_id": "6288e0a6b3076a49e337fe3b",
+                        "brewId": "6288b3fddde43e0c28357b2d",
+                        "username": "myusername",
+                        "value": 5,
+                        "date": "2022-05-21T12:52:54.134Z",
+                        "__v": 0
+                    }
+        "400":
+          description: Not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+  /api/votes/my-votes:
+    get:
+      tags: 
+      - Votes
+      summary: Get all votes from user
+      description: User & Admin
+      operationId: getMyVotes
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    [
+                        {
+                            "_id": "6288e0a6b3076a49e337fe3b",
+                            "brewId": "6288b3fddde43e0c28357b2d",
+                            "username": "myusername",
+                            "value": 3,
+                            "date": "2022-05-21T12:52:54.134Z",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "6288e8ade8c870223d4c8db5",
+                            "brewId": "6288b3fddde43e0c28357b2e",
+                            "username": "myusername",
+                            "value": 3,
+                            "date": "2022-05-21T13:27:09.215Z",
+                            "__v": 0
+                        }
+                    ]
+        "400":
+          description: Votes not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+  /api/votes/brew-specific:
+    get:
+      tags: 
+      - Votes
+      summary: Get all votes for brew
+      description: User & Admin
+      operationId: getBrewVotes
+      parameters:
+        - in: query
+          name: brewId
+          schema:
+            type: integer
+          description: id of brew
+      responses:
+        "200":
+          description: 200 OK
+          content:
+            application/json:
+              examples:
+                Example:
+                  value: |-
+                    [
+                        {
+                            "_id": "6288e0a6b3076a49e337fe3b",
+                            "brewId": "6288b3fddde43e0c28357b2d",
+                            "username": "myusername",
+                            "value": 3,
+                            "date": "2022-05-21T12:52:54.134Z",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "62892211f3930f516a808c1b",
+                            "brewId": "6288b3fddde43e0c28357b2d",
+                            "username": "anotherusername",
+                            "value": 4,
+                            "date": "2022-05-21T17:32:01.872Z",
+                            "__v": 0
+                        },
+                        {
+                            "_id": "62892d624c4588792bf968ad",
+                            "brewId": "6288b3fddde43e0c28357b2d",
+                            "username": "anotherusername6",
+                            "value": 4,
+                            "date": "2022-05-21T18:20:18.459Z",
+                            "__v": 0
+                        }
+                    ]
+        "400":
+          description: Votes not found
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+        "500":
+          description: Internal server error
+  /accounts/authenticate:
+    post:
+      tags: 
+      - Auth
+      summary: >-
+        Authenticate account credentials and return a JWT token and a cookie
+        with a refresh token
+      description: Accounts must be verified before authenticating.
+      operationId: authenticate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: jason@example.com
+                password:
+                  type: string
+                  example: pass123
+              required:
+                - email
+                - password
+      responses:
+        "200":
+          description: Account details, a JWT access token and a refresh token cookie
+          headers:
+            Set-Cookie:
+              description: "`refreshToken`"
+              schema:
+                type: string
+                example: >-
+                  refreshToken=51872eca5efedcf424db4cf5afd16a9d00ad25b743a034c9c221afc85d18dcd5e4ad6e3f08607550;
+                  Path=/; Expires=Tue, 16 Jun 2020 09:14:17 GMT; HttpOnly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 5eb12e197e06a76ccdefc121
+                  username:
+                    type: string
+                    example: yourusername
+                  email:
+                    type: string
+                    example: jason@example.com
+                  role:
+                    type: string
+                    example: Admin
+                  created:
+                    type: string
+                    example: "2020-05-05T09:12:57.848Z"
+                  isVerified:
+                    type: boolean
+                    example: true
+                  jwtToken:
+                    type: string
+                    example: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWIxMmUxOTdlMDZhNzZjY2RlZmMxMjEiLCJpZCI6IjVlYjEyZTE5N2UwNmE3NmNjZGVmYzEyMSIsImlhdCI6MTU4ODc1ODE1N30.xR9H0STbFOpSkuGA9jHNZOJ6eS7umHHqKRhI807YT1Y
+        "400":
+          description: The email or password is incorrect
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email or password is incorrect
+  /accounts/refresh-token:
+    post:
+      tags: 
+      - Auth
+      summary: Use a refresh token to generate a new JWT token and a new refresh token
+      description: The refresh token is sent and returned via cookies.
+      operationId: refreshToken
+      parameters:
+        - in: cookie
+          name: refreshToken
+          description: The `refreshToken` cookie
+          schema:
+            type: string
+            example: >-
+              51872eca5efedcf424db4cf5afd16a9d00ad25b743a034c9c221afc85d18dcd5e4ad6e3f08607550
+      responses:
+        "200":
+          description: Account details, a JWT access token and a new refresh token cookie
+          headers:
+            Set-Cookie:
+              description: "`refreshToken`"
+              schema:
+                type: string
+                example: >-
+                  refreshToken=51872eca5efedcf424db4cf5afd16a9d00ad25b743a034c9c221afc85d18dcd5e4ad6e3f08607550;
+                  Path=/; Expires=Tue, 16 Jun 2020 09:14:17 GMT; HttpOnly
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 5eb12e197e06a76ccdefc121
+                  username:
+                    type: string
+                    example: yourusername
+                  email:
+                    type: string
+                    example: jason@example.com
+                  role:
+                    type: string
+                    example: Admin
+                  created:
+                    type: string
+                    example: "2020-05-05T09:12:57.848Z"
+                  isVerified:
+                    type: boolean
+                    example: true
+                  jwtToken:
+                    type: string
+                    example: >-
+                      eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWIxMmUxOTdlMDZhNzZjY2RlZmMxMjEiLCJpZCI6IjVlYjEyZTE5N2UwNmE3NmNjZGVmYzEyMSIsImlhdCI6MTU4ODc1ODE1N30.xR9H0STbFOpSkuGA9jHNZOJ6eS7umHHqKRhI807YT1Y
+        "400":
+          description: The refresh token is invalid, revoked or expired
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid token
+  /accounts/revoke-token:
+    post:
+      tags: 
+      - Auth
+      summary: Revoke a refresh token
+      description: >-
+        Admin users can revoke the tokens of any account, regular users can only
+        revoke their own tokens.
+      operationId: revokeToken
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: cookie
+          name: refreshToken
+          description: >-
+            The refresh token can be sent in a cookie or the post body, if both
+            are sent the token in the body is used.
+          schema:
+            type: string
+            example: >-
+              51872eca5efedcf424db4cf5afd16a9d00ad25b743a034c9c221afc85d18dcd5e4ad6e3f08607550
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: >-
+                    51872eca5efedcf424db4cf5afd16a9d00ad25b743a034c9c221afc85d18dcd5e4ad6e3f08607550
+      responses:
+        "200":
+          description: The refresh token was successfully revoked
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token revoked
+        "400":
+          description: The refresh token is invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid token
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+  /accounts/register:
+    post:
+      tags: 
+      - Auth
+      summary: Register a new user account and send a verification email
+      description: >-
+        The first account registered in the system is assigned the `Admin` role,
+        other accounts are assigned the `User` role.
+      operationId: register
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Mr
+                firstName:
+                  type: string
+                  example: Jason
+                lastName:
+                  type: string
+                  example: Watmore
+                email:
+                  type: string
+                  example: jason@example.com
+                password:
+                  type: string
+                  example: pass123
+                confirmPassword:
+                  type: string
+                  example: pass123
+                acceptTerms:
+                  type: boolean
+              required:
+                - title
+                - firstName
+                - lastName
+                - email
+                - password
+                - confirmPassword
+                - acceptTerms
+      responses:
+        "200":
+          description: >-
+            The registration request was successful and a verification email has
+            been sent to the specified email address
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: >-
+                      Registration successful, please check your email for
+                      verification instructions
+  /accounts/verify-email:
+    post:
+      tags: 
+      - Auth
+      summary: >-
+        Verify a new account with a verification token received by email after
+        registration
+      operationId: verifyEmail
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: >-
+                    3c7f8d9c4cb348ff95a0b74a1452aa24fc9611bb76768bb9eafeeb826ddae2935f1880bc7713318f
+              required:
+                - token
+      responses:
+        "200":
+          description: Verification was successful so you can now login to the account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Verification successful, you can now login
+        "400":
+          description: Verification failed due to an invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Verification failed
+  /accounts/forgot-password:
+    post:
+      tags: 
+      - Auth
+      summary: Submit email address to reset the password on an account
+      operationId: forgotPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: jason@example.com
+              required:
+                - email
+      responses:
+        "200":
+          description: >-
+            The request was received and an email has been sent to the specified
+            address with password reset instructions (if the email address is
+            associated with an account)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Please check your email for password reset instructions
+  /accounts/validate-reset-token:
+    post:
+      tags: 
+      - Auth
+      summary: >-
+        Validate the reset password token received by email after submitting to
+        the /accounts/forgot-password route
+      operationId: validateResetToken
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: >-
+                    3c7f8d9c4cb348ff95a0b74a1452aa24fc9611bb76768bb9eafeeb826ddae2935f1880bc7713318f
+              required:
+                - token
+      responses:
+        "200":
+          description: Token is valid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Token is valid
+        "400":
+          description: Token is invalid
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid token
+  /accounts/reset-password:
+    post:
+      tags: 
+      - Auth
+      summary: Reset the password for an account
+      operationId: resetPassword
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  example: >-
+                    3c7f8d9c4cb348ff95a0b74a1452aa24fc9611bb76768bb9eafeeb826ddae2935f1880bc7713318f
+                password:
+                  type: string
+                  example: newPass123
+                confirmPassword:
+                  type: string
+                  example: newPass123
+              required:
+                - token
+                - password
+                - confirmPassword
+      responses:
+        "200":
+          description: >-
+            Password reset was successful so you can now login to the account
+            with the new password
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Password reset successful, you can now login
+        "400":
+          description: Password reset failed due to an invalid token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Invalid token
+  /accounts:
+    get:
+      tags: 
+      - Manage
+      summary: Get a list of all accounts
+      description: Restricted to admin users.
+      operationId: getAllAccounts
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: An array of all accounts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: 5eb12e197e06a76ccdefc121
+                    username:
+                      type: string
+                      example: yourusername
+                    email:
+                      type: string
+                      example: jason@example.com
+                    role:
+                      type: string
+                      example: Admin
+                    created:
+                      type: string
+                      example: "2020-05-05T09:12:57.848Z"
+                    updated:
+                      type: string
+                      example: "2020-05-08T03:11:21.553Z"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+    post:
+      tags: 
+      - Manage
+      summary: Create a new account
+      description: Restricted to admin users.
+      operationId: createAccount
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: yourusername
+                email:
+                  type: string
+                  example: jason@example.com
+                password:
+                  type: string
+                  example: pass123
+                confirmPassword:
+                  type: string
+                  example: pass123
+                role:
+                  type: string
+                  enum:
+                    - Admin
+                    - User
+              required:
+                - username
+                - email
+                - password
+                - confirmPassword
+                - role
+      responses:
+        "200":
+          description: >-
+            Account created successfully, verification is not required for
+            accounts created with this endpoint. The details of the new account
+            are returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 5eb12e197e06a76ccdefc121
+                  username:
+                    type: string
+                    example: yourusername
+                  email:
+                    type: string
+                    example: jason@example.com
+                  role:
+                    type: string
+                    example: Admin
+                  created:
+                    type: string
+                    example: "2020-05-05T09:12:57.848Z"
+        "400":
+          description: Email is already registered
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email 'jason@example.com' is already registered
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+  /accounts/{id}:
+    parameters:
+      - in: path
+        name: id
+        description: Account id
+        required: true
+        example: 5eb12e197e06a76ccdefc121
+        schema:
+          type: string
+    get:
+      tags: 
+      - Manage
+      summary: Get a single account by id
+      description: >-
+        Admin users can access any account, regular users are restricted to
+        their own account.
+      operationId: getAccountById
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Details of the specified account
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 5eb12e197e06a76ccdefc121
+                  username:
+                    type: string
+                    example: yourusername
+                  email:
+                    type: string
+                    example: jason@example.com
+                  role:
+                    type: string
+                    example: Admin
+                  created:
+                    type: string
+                    example: "2020-05-05T09:12:57.848Z"
+                  updated:
+                    type: string
+                    example: "2020-05-08T03:11:21.553Z"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+    put:
+      tags: 
+      - Manage
+      summary: Update an account
+      description: >-
+        Admin users can update any account including role, regular users are
+        restricted to their own account and cannot update role.
+      operationId: updateAccount
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  example: yourusername
+                email:
+                  type: string
+                  example: jason@example.com
+                password:
+                  type: string
+                  example: pass123
+                confirmPassword:
+                  type: string
+                  example: pass123
+                role:
+                  type: string
+                  enum:
+                    - Admin
+                    - User
+      responses:
+        "200":
+          description: >-
+            Account updated successfully. The details of the updated account are
+            returned.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 5eb12e197e06a76ccdefc121
+                  username:
+                    type: string
+                    example: yourusername
+                  email:
+                    type: string
+                    example: jason@example.com
+                  role:
+                    type: string
+                    example: Admin
+                  created:
+                    type: string
+                    example: "2020-05-05T09:12:57.848Z"
+                  updated:
+                    type: string
+                    example: "2020-05-08T03:11:21.553Z"
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+    delete:
+      tags: 
+      - Manage
+      summary: Delete an account
+      description: >-
+        Admin users can delete any account, regular users are restricted to
+        their own account.
+      operationId: deleteAccount
+      security:
+        - bearerAuth: []
+      responses:
+        "200":
+          description: Account deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Account deleted successfully
+        "401":
+          $ref: "#/components/responses/UnauthorizedError"
+        "404":
+          $ref: "#/components/responses/NotFoundError"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  responses:
+    UnauthorizedError:
+      description: >-
+        Access token is missing or invalid, or the user does not have access to
+        perform the action
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Unauthorized
+    NotFoundError:
+      description: Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                example: Not Found

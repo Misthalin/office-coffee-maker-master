@@ -1,0 +1,5 @@
+.rating-container {
+  display: flex;
+  gap: 0.5em;
+  flex-wrap: wrap;
+}

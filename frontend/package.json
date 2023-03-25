@@ -1,0 +1,95 @@
+{
+  "name": "ntnu-fullstack-coffee",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:5050",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "axios": "^0.27.1",
+    "formik": "^2.2.9",
+    "jwt-decode": "^3.1.2",
+    "moment": "^2.29.3",
+    "moment-timezone": "^0.5.34",
+    "prop-types": "^15.8.1",
+    "query-string": "^7.1.1",
+    "react": "^18.1.0",
+    "react-burger-menu": "^3.0.8",
+    "react-confirm": "^0.2.3",
+    "react-dom": "^18.1.0",
+    "react-helmet-async": "^1.3.0",
+    "react-hot-toast": "^2.2.0",
+    "react-modal": "^3.15.1",
+    "react-moment": "^1.1.1",
+    "react-rating-stars-component": "^2.2.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.0",
+    "react-scroll-to-top": "^1.0.8",
+    "rxjs": "^7.5.5",
+    "web-vitals": "^2.1.0",
+    "yup": "^0.32.11"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "@storybook/addon-actions": "^6.5.5",
+    "@storybook/addon-essentials": "^6.5.5",
+    "@storybook/addon-interactions": "^6.5.5",
+    "@storybook/addon-links": "^6.5.5",
+    "@storybook/builder-webpack5": "^6.5.5",
+    "@storybook/manager-webpack5": "^6.5.5",
+    "@storybook/node-logger": "^6.5.5",
+    "@storybook/preset-create-react-app": "^4.1.1",
+    "@storybook/react": "^6.5.5",
+    "@storybook/testing-library": "^0.0.11",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-named-exports-order": "^0.0.2",
+    "css-loader": "^3.4.2",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.11.0",
+    "less-loader": "^5.0.0",
+    "path": "^0.12.7",
+    "style-loader": "^1.1.3",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

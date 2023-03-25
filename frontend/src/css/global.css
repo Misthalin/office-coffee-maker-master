@@ -1,0 +1,75 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: "Raleway", sans-serif;
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: var(--fw-reg);
+  line-height: 1.6;
+  transition: color 200ms ease, background-color 200ms ease;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid var(--foreground);
+  outline-offset: 3px;
+}
+.container {
+  max-width: 90ch;
+  padding: 2em 1em;
+  margin: 0 auto;
+}
+.text-light {
+  font-weight: 300;
+}
+.text-regular {
+  font-weight: 400;
+}
+.text-bold {
+  font-weight: 700;
+}
+.text-black {
+  font-weight: 900;
+}
+.text-center {
+  text-align: center;
+}
+.text-small {
+  font-size: var(--fs-small);
+  margin: 0;
+}
+
+.skip-link {
+  text-decoration: none;
+  z-index: 100;
+  background-color: var(--foreground);
+  color: var(--background);
+  text-align: center;
+  left: 50%;
+  right: 0;
+  width: 200px;
+  position: absolute;
+  transform: translate(-50%, -300%);
+  transition: transform 0.3s;
+}
+
+.skip-link:focus {
+  outline: 3px solid var(--foreground);
+  outline-offset: 3px;
+  
+  transform: translate(-50%, 0);
+}
+
+@media screen and (min-width: 56em) {
+  .container {
+    padding: 2em 5em;
+  }
+}

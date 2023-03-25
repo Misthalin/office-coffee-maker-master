@@ -1,0 +1,25 @@
+.top-scroll {
+  display: grid;
+  place-content: center;
+  background-color: var(--background);
+  right: 3em;
+  bottom: 3em;
+  position: fixed;
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 1em;
+  transition: opacity 1s ease-in-out;
+  box-shadow: var(--bs);
+  border: var(--border);
+  outline: none;
+}
+.top-scroll  path {
+  fill: var(--foreground);
+}
+
+.top-scroll:hover,
+.top-scroll:hover path {
+  background-color: var(--foreground);
+  fill: var(--background);
+}

@@ -1,0 +1,40 @@
+.bean {
+  margin: 1em 0;
+}
+.bean-container {
+  padding: 1.5em 0;
+  border-top: var(--border);
+  border-bottom: var(--border);
+
+  display: grid;
+  gap: 0.5em;
+}
+.bean-container .btn-group > * {
+  align-self: center;
+  margin: 0;
+}
+@media screen and (min-width: 50em) {
+  .bean-container {
+    grid-template-columns: 1fr 200px;
+  }
+  .bean-container .btn-group {
+    justify-self: end;
+    grid-template-columns: 1fr;
+  }
+}
+.bean-details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+.bean-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+@media screen and (min-width: 56em) {
+  .bean-details {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

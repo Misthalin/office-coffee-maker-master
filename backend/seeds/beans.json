@@ -1,0 +1,169 @@
+[{
+  "_id": {
+    "$oid": "628e72b4f5c373c76258c79f"
+  },
+  "typeOfBean": "Example",
+  "brand": "NAPA VALLEY COFFEE ROASTING COMPANY",
+  "roastProfile": "Medium",
+  "roastType": "Blend",
+  "priceKg": 200,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:17:24.393Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e72d6f5c373c76258c7b9"
+  },
+  "typeOfBean": "Indonesian Celebes Kalosi Vienna",
+  "brand": "MITALENA ARTISAN COFFEE",
+  "roastProfile": "Medium",
+  "roastType": "Single Origin",
+  "priceKg": 220,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:17:58.778Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e7381f5c373c76258c7db"
+  },
+  "typeOfBean": "Example",
+  "brand": "NAPA VALLEY COFFEE ROASTING COMPANY",
+  "roastProfile": "Medium",
+  "roastType": "Blend",
+  "priceKg": 170,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:20:49.381Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e738df5c373c76258c7df"
+  },
+  "typeOfBean": "Indonesian Celebes Kalosi Vienna",
+  "brand": "MITALENA ARTISAN COFFEE",
+  "roastProfile": "Medium",
+  "roastType": "Single Origin",
+  "priceKg": 220,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:21:01.063Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e7398f5c373c76258c7e3"
+  },
+  "typeOfBean": "Peru FTO Decaf Dark",
+  "brand": "CAFE SANTANA",
+  "roastProfile": "Dark",
+  "roastType": "Single Origin",
+  "priceKg": 220,
+  "origin": "Organical",
+  "beanAdded": {
+    "$date": "2022-05-25T18:21:12.152Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e73adf5c373c76258c7e7"
+  },
+  "typeOfBean": "Costa Rica Cordillera De Fuego Termico",
+  "brand": "THE CHOSEN BEAN",
+  "roastProfile": "Medium",
+  "roastType": "Single Origin",
+  "priceKg": 159,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:21:33.025Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e73bbf5c373c76258c7eb"
+  },
+  "typeOfBean": "Freight House",
+  "brand": "UTICA COFFEE ROASTING CO.",
+  "roastProfile": "Medium",
+  "roastType": "Blend",
+  "priceKg": 179,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:21:47.917Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e73cff5c373c76258c7ef"
+  },
+  "typeOfBean": "Colombian Peaks",
+  "brand": "EIGHT O'CLOCK COFFEE COMPANY",
+  "roastProfile": "Medium",
+  "roastType": "Blend",
+  "priceKg": 219,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:22:07.253Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e73e0f5c373c76258c7f3"
+  },
+  "typeOfBean": "Dark Italian Roast",
+  "brand": "CRAVENS COFFEE COMPANY",
+  "roastProfile": "Dark",
+  "roastType": "Blend",
+  "priceKg": 143,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:22:24.621Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e73ebf5c373c76258c7f7"
+  },
+  "typeOfBean": "The 1950",
+  "brand": "IGNORE",
+  "roastProfile": "Medium",
+  "roastType": "Single Origin",
+  "priceKg": 412,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:22:35.256Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e73faf5c373c76258c7fb"
+  },
+  "typeOfBean": "Buna Boka",
+  "brand": "JBC COFFEE ROASTERS",
+  "roastProfile": "Medium",
+  "roastType": "Single Origin",
+  "priceKg": 302,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:22:50.582Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "628e740ff5c373c76258c7ff"
+  },
+  "typeOfBean": "Example",
+  "brand": "Example Company",
+  "roastProfile": "Dark",
+  "roastType": "Blend",
+  "priceKg": 192,
+  "origin": "Arabica",
+  "beanAdded": {
+    "$date": "2022-05-25T18:23:11.058Z"
+  },
+  "__v": 0
+}]

@@ -1,0 +1,7 @@
+.modal-container {
+    padding: 1em 2em;
+}
+
+.modal-container > *:first-child {
+    margin-bottom: .5em;
+}
